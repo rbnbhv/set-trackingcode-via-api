@@ -63,3 +63,18 @@ $response = $client->send($request);
 var_dump($body['data']);
 $body = json_decode($response->getBody()->getContents(), true);
 
+$request = new Request(
+    'POST',
+    HOST . '/api/_action/order_delivery/2f41a90c2fe943f6829cab2e8d6e0b42/state/ship',
+    [
+        'Authorization' => 'Bearer ' . $accessToken,
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json'
+    ],
+    json_encode([
+        'documentIds' => [],
+        'sendMail' => true
+    ])
+);
+$response = $client->send($request);
+$body = json_decode($response->getBody()->getContents(), true);
