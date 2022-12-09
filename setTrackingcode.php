@@ -7,8 +7,6 @@ require 'vendor/autoload.php';
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
-const HOST = 'http://shopware.p574147.webspaceconfig.de';
-
 $client = new Client();
 $accessToken = getAccessToken($client);
 
