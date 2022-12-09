@@ -1,14 +1,12 @@
 <?php
 
-namespace App;
+
+include 'Credentials.php';
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use function json_encode;
 
-const USERNAME = 'p574147';
-const PASSWORD = 'iZba8#e+w4zflh';
 const HOST = 'http://shopware.p574147.webspaceconfig.de';
 
 $client = new Client();
@@ -58,9 +56,10 @@ $request = new Request(
     ],
     json_encode([
         'id' => '2f41a90c2fe943f6829cab2e8d6e0b42',
-        'trackingCodes' => [(string)rand(111111, 999999)]
+        'trackingCodes' => ['123456789']
     ])
 );
 $response = $client->send($request);
 var_dump($body['data']);
 $body = json_decode($response->getBody()->getContents(), true);
+
