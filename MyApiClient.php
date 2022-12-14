@@ -39,29 +39,29 @@ class MyApiClient
         $this->accessToken = $body['access_token'];
     }
 
-    public function setTrackingcode(string $id, array $trackingCodes) : void
+    public function setTrackingcode(string $orderDeliveryId, array $trackingCodes) : void
     {
         $request = new Request(
             'PATCH',
-            HOST . '/api/order-delivery/' . $id,
+            HOST . '/api/order-delivery/' . $orderDeliveryId,
             [
                 'Authorization' => 'Bearer ' . $this->accessToken,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json'
             ],
             json_encode([
-                'id' => '2f41a90c2fe943f6829cab2e8d6e0b42',
+                'id' => $orderDeliveryId,
                 'trackingCodes' => $trackingCodes
             ])
         );
         $this->sendRequest($request);
     }
 
-    public function markOrderAsShipped(string $id) : void
+    public function markOrderAsShipped(string $orderDeliveryId) : void
     {
         $request = new Request(
             'POST',
-            HOST . '/api/_action/order_delivery/' . $id . '/state/ship',
+            HOST . '/api/_action/order_delivery/' . $orderDeliveryId . '/state/ship',
             [
                 'Authorization' => 'Bearer ' . $this->accessToken,
                 'Accept' => 'application/json',
