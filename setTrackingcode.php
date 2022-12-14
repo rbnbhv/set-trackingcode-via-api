@@ -1,6 +1,5 @@
 <?php
 
-include 'Credentials.php';
 include 'MyApiClient.php';
 require 'vendor/autoload.php';
 

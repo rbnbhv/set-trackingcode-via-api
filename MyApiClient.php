@@ -1,5 +1,7 @@
 <?php
 
+include 'Credentials.php';
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -7,7 +9,6 @@ use GuzzleHttp\Psr7\Response;
 
 class MyApiClient
 {
-    const HOST = 'http://shopware.p574147.webspaceconfig.de';
     private Client $client;
     private string $accessToken;
 
@@ -28,7 +29,7 @@ class MyApiClient
         ]);
         $request = new Request(
             'POST',
-            self::HOST.'/api/oauth/token',
+            HOST.'/api/oauth/token',
             ['Content-Type' => 'application/json'],
             $body
         );
@@ -42,7 +43,7 @@ class MyApiClient
     {
         $request = new Request(
             'PATCH',
-            self::HOST . '/api/order-delivery/' . $id,
+            HOST . '/api/order-delivery/' . $id,
             [
                 'Authorization' => 'Bearer ' . $this->accessToken,
                 'Accept' => 'application/json',
@@ -60,7 +61,7 @@ class MyApiClient
     {
         $request = new Request(
             'POST',
-            self::HOST . '/api/_action/order_delivery/' . $id . '/state/ship',
+            HOST . '/api/_action/order_delivery/' . $id . '/state/ship',
             [
                 'Authorization' => 'Bearer ' . $this->accessToken,
                 'Accept' => 'application/json',
